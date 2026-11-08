@@ -1,0 +1,144 @@
+<template><style>#root{position:absolute;inset:0}@font-face{font-family:Pretendard;src:url('assets/fonts/Pretendard-Regular.otf');font-weight:400}
+@font-face{font-family:Pretendard;src:url('assets/fonts/Pretendard-SemiBold.otf');font-weight:600}
+@font-face{font-family:Pretendard;src:url('assets/fonts/Pretendard-Bold.otf');font-weight:700}
+*{box-sizing:border-box}.stage{position:absolute;inset:0;background:radial-gradient(ellipse at 78% 72%,rgba(55,89,222,.24) 0%,rgba(55,89,222,0) 65%),linear-gradient(145deg,rgba(55,89,222,0) 35%,rgba(55,89,222,.14) 100%),var(--background,#000);overflow:hidden;color:#fff;font-family:Pretendard,sans-serif}.scene-camera{position:absolute;inset:0}.clip{position:absolute;inset:0}.headline{margin:0;font-size:156.8px;line-height:190.4px;font-weight:700;letter-spacing:0}.medium{font-size:117.6px;line-height:142.8px}.line-mask{overflow:hidden}.line{display:block;white-space:nowrap}.blue{color:#6685ff}.body{font-size:61.6px;line-height:89.6px;font-weight:400;margin:0}.phone{width:444px;height:916px;position:absolute;transform-origin:50% 50%}.phone .screen{position:absolute;left:21px;top:21px;width:402px;height:874px;border-radius:62px;object-fit:contain;background:#fff}.phone .frame{position:absolute;inset:0;width:444px;height:916px}.part{position:absolute;transform-origin:0 0}.part iframe{display:block;border:0;background:transparent;pointer-events:none}.brand{position:absolute;object-fit:contain}.mascot{position:absolute;object-fit:contain}.caption{color:#fff}.end-logo{width:894px;height:114px;object-fit:contain}
+
+  @font-face { font-family: "Pretendard"; font-weight: 400; src: url("assets/fonts/Pretendard-Regular.otf") format("opentype"); }
+  @font-face { font-family: "Pretendard"; font-weight: 600; src: url("assets/fonts/Pretendard-SemiBold.otf") format("opentype"); }
+  @font-face { font-family: "Pretendard"; font-weight: 700; src: url("assets/fonts/Pretendard-Bold.otf") format("opentype"); }
+  /* 토큰 (docs/design.md 1장) */
+  #mi-card {
+    --color-bg: #ffffff;
+    --color-text: #18191b;
+    --color-text-muted: #75777c;
+    --color-primary: #3759de;
+    --color-on-primary: #ffffff;
+    --color-character-bg: #e3f2fd;
+    --color-illustration-dce2f2: #dce2f2;
+    --color-illustration-ebeef5: #ebeef5;
+  }
+
+  #mission-card {
+    box-sizing: border-box;
+    width: 350px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+    border: 1px solid var(--color-illustration-dce2f2);
+    border-radius: 12px;
+    background: var(--color-bg);
+    font-family: "Pretendard", sans-serif;
+  }
+  #mission-card p { margin: 0; }
+  #mission-card .cover { width: 318px; display: flex; align-items: flex-start; gap: 12px; overflow: hidden; }
+  #mission-card .copy { width: 218px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  /* Text/caption */
+  #mission-card .caption { font-weight: 400; font-size: 12px; line-height: 16px; white-space: pre-wrap; }
+  #mission-card .eyebrow { color: var(--color-primary); }
+  /* Text/compact-title */
+  #mission-card .title { font-weight: 700; font-size: 22px; line-height: 28px; color: var(--color-text); }
+  #mission-card .character {
+    flex: none;
+    width: 88px;
+    height: 96px;
+    overflow: hidden;
+    background: var(--color-character-bg);
+  }
+  #mission-card .character img { display: block; width: 88px; height: 96px; object-fit: contain; }
+  #mission-card .deliverables { width: 318px; color: var(--color-text-muted); }
+  #mission-card .progress { width: 318px; display: flex; flex-direction: column; gap: 8px; }
+  #mission-card .progress-labels { display: flex; }
+  #mission-card #mission-card-progress-text { width: 190px; color: var(--color-primary); }
+  #mission-card .due { width: 128px; color: var(--color-text-muted); text-align: right; }
+  #mission-card .track {
+    position: relative;
+    width: 318px;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 1.5px;
+    background: var(--color-illustration-ebeef5);
+  }
+  #mission-card-progress-fill {
+    --progress: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(318px * var(--progress));
+    height: 3px;
+    border-radius: 1.5px;
+    background: var(--color-primary);
+  }
+  #mission-card .button {
+    box-sizing: border-box;
+    width: 318px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--color-primary);
+  }
+  /* Text/label */
+  #mission-card .button p {
+    flex: 1 0 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-on-primary);
+    text-align: center;
+  }
+
+#mission-card-progress-fill{width:318px;transform-origin:0 50%}
+.mi-confetti{position:absolute;left:1210px;top:790px;width:12px;height:20px;border-radius:3px;opacity:0;pointer-events:none}
+</style><div id="root" data-composition-id="mission" data-width="1920" data-height="1080" data-duration="4"><div class="stage"><div id="mission-camera" class="scene-camera"><div id="mission-phone-clip" class="clip" data-start="0" data-duration="4" data-track-index="1" data-layout-allow-overlap="true"><div id="mi-phone" class="phone" style="left:240px;top:92px"><img id="mission-phone-screen" data-start="0" data-duration="4" class="screen" src="assets/03-mission.png" alt="실제 제품 화면"><img id="mission-phone-frame" data-start="0" data-duration="4" class="frame" src="assets/iphone-18-pro-silver.webp" alt="iPhone 목업"></div></div><div id="mission-title-clip" class="clip" data-start="0" data-duration="4" data-track-index="2" data-layout-allow-overlap="true"><h1 id="mi-title" class="headline medium" style="position:absolute;left:860px;top:130px"><div class="line-mask"><span id="mi-title-0" class="line">미션에</span></div><div class="line-mask"><span id="mi-title-1" class="line">적용하고</span></div></h1></div><div id="mission-card-clip" class="clip" data-start="0" data-duration="4" data-track-index="3" data-layout-allow-overlap="true"><div id="mi-card" class="part" style="left:860px;top:460px;width:350px;height:253px">
+  <div id="mission-card">
+    <div class="cover">
+      <div class="copy">
+        <p class="caption eyebrow">이번 달 미션  ·  D–12</p>
+        <p class="title">반복 업무를 줄이는<br>AI 자동화</p>
+      </div>
+      <div class="character"><img id="mission-card-mascot" data-start="0" data-duration="4" src="assets/perdi-flag.png" alt=""></div>
+    </div>
+    <p class="caption deliverables">자동화 자산 1개 + 실제 적용 사례 1개</p>
+    <div class="progress">
+      <div class="progress-labels">
+        <p id="mission-card-progress-text" class="caption">50% · 2/4 단계 완료</p>
+        <p class="caption due">9월 30일 마감</p>
+      </div>
+      <div class="track"><div id="mission-card-progress-fill"></div></div>
+    </div>
+    <div id="mission-card-button" class="button"><p>적용 사례 정리하기 →</p></div>
+  </div>
+</div></div><div id="mission-celebration-clip" class="clip" data-start="0" data-duration="4" data-track-index="4" style="z-index:5;pointer-events:none"><span id="mi-confetti-0" class="mi-confetti" style="background:#6685ff"></span><span id="mi-confetti-1" class="mi-confetti" style="background:#ffffff"></span><span id="mi-confetti-2" class="mi-confetti" style="background:#3759de"></span><span id="mi-confetti-3" class="mi-confetti" style="background:#6685ff"></span><span id="mi-confetti-4" class="mi-confetti" style="background:#ffffff"></span><span id="mi-confetti-5" class="mi-confetti" style="background:#3759de"></span><span id="mi-confetti-6" class="mi-confetti" style="background:#6685ff"></span><span id="mi-confetti-7" class="mi-confetti" style="background:#ffffff"></span><span id="mi-confetti-8" class="mi-confetti" style="background:#3759de"></span><span id="mi-confetti-9" class="mi-confetti" style="background:#6685ff"></span><span id="mi-confetti-10" class="mi-confetti" style="background:#ffffff"></span><span id="mi-confetti-11" class="mi-confetti" style="background:#3759de"></span><span id="mi-confetti-12" class="mi-confetti" style="background:#6685ff"></span><span id="mi-confetti-13" class="mi-confetti" style="background:#ffffff"></span><span id="mi-confetti-14" class="mi-confetti" style="background:#3759de"></span><span id="mi-confetti-15" class="mi-confetti" style="background:#6685ff"></span><span id="mi-confetti-16" class="mi-confetti" style="background:#ffffff"></span><span id="mi-confetti-17" class="mi-confetti" style="background:#3759de"></span><span id="mi-confetti-18" class="mi-confetti" style="background:#6685ff"></span><span id="mi-confetti-19" class="mi-confetti" style="background:#ffffff"></span><span id="mi-confetti-20" class="mi-confetti" style="background:#3759de"></span><span id="mi-confetti-21" class="mi-confetti" style="background:#6685ff"></span></div></div></div></div><script>
+const tl=gsap.timeline({paused:true});
+const out=CustomEase.create('mission-out','0.16,1,0.3,1'), move=CustomEase.create('mission-move','0.65,0,0.35,1'), settle=CustomEase.create('mission-settle','0.34,1.3,0.64,1');
+
+tl.fromTo('#mi-phone',{x:600,y:200,scale:2.8,rotation:12},{x:0,y:0,scale:1,rotation:4,duration:.8,ease:move},0);
+tl.fromTo('#mi-title-0',{yPercent:110},{yPercent:0,duration:.6,ease:out},.2);
+tl.fromTo('#mi-title-1',{yPercent:110},{yPercent:0,duration:.6,ease:out},.3);
+tl.fromTo('#mi-card',{x:1000,y:150,scale:2,rotation:8,opacity:0},{x:0,y:0,scale:2,rotation:0,opacity:1,duration:.6,ease:out},.2);
+
+// Original mission part, now inline so all state follows the same seekable timeline.
+const progress={value:50};
+const progressLabel=document.getElementById('mission-card-progress-text');
+function showProgress(){const percent=Math.round(progress.value);progressLabel.textContent=percent+'% · '+Math.min(4,Math.floor(percent/25))+'/4 단계 완료';}
+tl.fromTo('#mission-card-progress-fill',{scaleX:.5},{scaleX:1,duration:.6,ease:move},2);
+tl.fromTo(progress,{value:50},{value:100,duration:.6,ease:move,onUpdate:showProgress},2);
+// Adapted from the registry confetti component: fixed paths, one burst, no random state.
+for(let i=0;i<22;i++){
+ const angle=Math.PI+(i/21)*Math.PI;
+ const distance=200+(i%4)*48;
+ const dx=Math.cos(angle)*distance,dy=Math.sin(angle)*distance;
+ tl.fromTo('#mi-confetti-'+i,{x:0,y:0,rotation:0,opacity:0,scale:.6},
+  {x:dx,y:dy,rotation:180+i*37,opacity:1,scale:1,duration:.4,ease:out},2.6);
+ tl.to('#mi-confetti-'+i,{y:dy+96,rotation:270+i*37,opacity:0,duration:.3,ease:move},3);
+}
+
+tl.to('#mission-camera',{y:-1080,duration:.4,ease:move},3.6);
+
+tl.to({},{duration:0.001},4-.001);
+window.__timelines=window.__timelines||{};window.__timelines['mission']=tl;
+</script></template>
